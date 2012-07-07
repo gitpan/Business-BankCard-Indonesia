@@ -18,12 +18,13 @@ my %module_build_args = (
     "Steven Haryanto <stevenharyanto\@gmail.com>"
   ],
   "dist_name" => "Business-BankCard-Indonesia",
-  "dist_version" => "0.01",
+  "dist_version" => "0.02",
   "license" => "perl",
   "module_name" => "Business::BankCard::Indonesia",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
+    "Perinci::Sub::Gen::AccessTable" => 0,
     "perl" => "5.010000"
   },
   "script_files" => []
