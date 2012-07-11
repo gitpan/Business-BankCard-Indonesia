@@ -26,7 +26,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Perinci::Sub::Gen::AccessTable" : 0,
+            "Perinci::Sub::Gen::AccessTable" : "0.14",
             "perl" : "5.010000"
          }
       },
@@ -43,6 +43,6 @@
          "url" : "http://github.com/sharyanto/perl-Business-BankCard-Indonesia"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
 

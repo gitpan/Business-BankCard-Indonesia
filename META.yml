@@ -15,9 +15,9 @@ meta-spec:
   version: 1.4
 name: Business-BankCard-Indonesia
 requires:
-  Perinci::Sub::Gen::AccessTable: 0
+  Perinci::Sub::Gen::AccessTable: 0.14
   perl: 5.010000
 resources:
   homepage: http://metacpan.org/dist/Business-BankCard-Indonesia
   repository: http://github.com/sharyanto/perl-Business-BankCard-Indonesia
-version: 0.02
+version: 0.03
