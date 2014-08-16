@@ -3,7 +3,9 @@ NAME
     number issued in Indonesia
 
 VERSION
-    version 0.03
+    This document describes version 0.04 of Business::BankCard::Indonesia
+    (from Perl distribution Business-BankCard-Indonesia), released on
+    2014-08-16.
 
 SYNOPSIS
 DESCRIPTION
@@ -12,19 +14,12 @@ DESCRIPTION
     This module provides routines to deal with bank card number issued in
     Indonesia.
 
-SEE ALSO
-    Business::BankCard
-
-DESCRIPTION
-    This module has Rinci metadata.
-
 FUNCTIONS
-    None are exported by default, but they are exportable.
-
   list_id_bank_card_prefixes(%args) -> [status, msg, result, meta]
     Prefix of card numbers issued in Indonesia.
 
-    REPLACE ME
+    Data source is currently at https://github.com/sharyanto/gudangdata
+    (table/idn_bank_card_prefix).
 
     Arguments ('*' denotes required arguments):
 
@@ -34,11 +29,11 @@ FUNCTIONS
 
         By default, only the key (ID) field is returned per result entry.
 
-    *   fields* => *array* (default: "prefix")
+    *   fields => *array* (default: "prefix")
 
         Select fields to return.
 
-    *   ind_description* => *str*
+    *   ind_description => *str*
 
         Only return records where the 'ind_description' field equals
         specified value.
@@ -48,9 +43,19 @@ FUNCTIONS
         Only return records where the 'ind_description' field contains
         specified text.
 
-    *   ind_description.is* => *str*
+    *   ind_description.in => *array*
+
+        Only return records where the 'ind_description' field is in the
+        specified values.
+
+    *   ind_description.is => *str*
 
         Only return records where the 'ind_description' field equals
+        specified value.
+
+    *   ind_description.isnt => *str*
+
+        Only return records where the 'ind_description' field does not equal
         specified value.
 
     *   ind_description.max => *str*
@@ -58,7 +63,7 @@ FUNCTIONS
         Only return records where the 'ind_description' field is less than
         or equal to specified value.
 
-    *   ind_description.min => *array*
+    *   ind_description.min => *str*
 
         Only return records where the 'ind_description' field is greater
         than or equal to specified value.
@@ -66,49 +71,69 @@ FUNCTIONS
     *   ind_description.not_contains => *str*
 
         Only return records where the 'ind_description' field does not
-        contain a certain text.
+        contain specified text.
+
+    *   ind_description.not_in => *array*
+
+        Only return records where the 'ind_description' field is not in the
+        specified values.
 
     *   ind_description.xmax => *str*
 
         Only return records where the 'ind_description' field is less than
         specified value.
 
-    *   ind_description.xmin => *array*
+    *   ind_description.xmin => *str*
 
         Only return records where the 'ind_description' field is greater
         than specified value.
 
-    *   issuer_id* => *int*
+    *   issuer_id => *int*
 
         Only return records where the 'issuer_id' field equals specified
         value.
 
-    *   issuer_id.is* => *int*
+    *   issuer_id.in => *array*
+
+        Only return records where the 'issuer_id' field is in the specified
+        values.
+
+    *   issuer_id.is => *int*
 
         Only return records where the 'issuer_id' field equals specified
         value.
+
+    *   issuer_id.isnt => *int*
+
+        Only return records where the 'issuer_id' field does not equal
+        specified value.
 
     *   issuer_id.max => *int*
 
         Only return records where the 'issuer_id' field is less than or
         equal to specified value.
 
-    *   issuer_id.min => *array*
+    *   issuer_id.min => *int*
 
         Only return records where the 'issuer_id' field is greater than or
         equal to specified value.
+
+    *   issuer_id.not_in => *array*
+
+        Only return records where the 'issuer_id' field is not in the
+        specified values.
 
     *   issuer_id.xmax => *int*
 
         Only return records where the 'issuer_id' field is less than
         specified value.
 
-    *   issuer_id.xmin => *array*
+    *   issuer_id.xmin => *int*
 
         Only return records where the 'issuer_id' field is greater than
         specified value.
 
-    *   prefix* => *str*
+    *   prefix => *str*
 
         Only return records where the 'prefix' field equals specified value.
 
@@ -117,31 +142,46 @@ FUNCTIONS
         Only return records where the 'prefix' field contains specified
         text.
 
-    *   prefix.is* => *str*
+    *   prefix.in => *array*
+
+        Only return records where the 'prefix' field is in the specified
+        values.
+
+    *   prefix.is => *str*
 
         Only return records where the 'prefix' field equals specified value.
+
+    *   prefix.isnt => *str*
+
+        Only return records where the 'prefix' field does not equal
+        specified value.
 
     *   prefix.max => *str*
 
         Only return records where the 'prefix' field is less than or equal
         to specified value.
 
-    *   prefix.min => *array*
+    *   prefix.min => *str*
 
         Only return records where the 'prefix' field is greater than or
         equal to specified value.
 
     *   prefix.not_contains => *str*
 
-        Only return records where the 'prefix' field does not contain a
-        certain text.
+        Only return records where the 'prefix' field does not contain
+        specified text.
+
+    *   prefix.not_in => *array*
+
+        Only return records where the 'prefix' field is not in the specified
+        values.
 
     *   prefix.xmax => *str*
 
         Only return records where the 'prefix' field is less than specified
         value.
 
-    *   prefix.xmin => *array*
+    *   prefix.xmin => *str*
 
         Only return records where the 'prefix' field is greater than
         specified value.
@@ -180,18 +220,41 @@ FUNCTIONS
 
     Return value:
 
-    Returns an enveloped result (an array). First element (status) is an
-    integer containing HTTP status code (200 means OK, 4xx caller error, 5xx
-    function error). Second element (msg) is a string containing error
-    message, or 'OK' if status is 200. Third element (result) is optional,
-    the actual result. Fourth element (meta) is called result metadata and
-    is optional, a hash that contains extra information.
+    Returns an enveloped result (an array).
+
+    First element (status) is an integer containing HTTP status code (200
+    means OK, 4xx caller error, 5xx function error). Second element (msg) is
+    a string containing error message, or 'OK' if status is 200. Third
+    element (result) is optional, the actual result. Fourth element (meta)
+    is called result metadata and is optional, a hash that contains extra
+    information.
+
+     (any)
+
+SEE ALSO
+    Business::BankCard
+
+HOMEPAGE
+    Please visit the project's homepage at
+    <https://metacpan.org/release/Business-BankCard-Indonesia>.
+
+SOURCE
+    Source repository is at
+    <https://github.com/sharyanto/perl-Business-BankCard-Indonesia>.
+
+BUGS
+    Please report any bugs or feature requests on the bugtracker website
+    <https://rt.cpan.org/Public/Dist/Display.html?Name=Business-BankCard-Ind
+    onesia>
+
+    When submitting a bug or request, please include a test-file or a patch
+    to an existing test-file that illustrates the bug or desired feature.
 
 AUTHOR
     Steven Haryanto <stevenharyanto@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2012 by Steven Haryanto.
+    This software is copyright (c) 2014 by Steven Haryanto.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.
